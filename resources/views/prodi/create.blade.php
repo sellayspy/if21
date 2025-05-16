@@ -24,15 +24,15 @@
                         <input type="text" class="form-control" name="singkatan">
                       </div>
                       <div class="mb-3">
-                        <label for="nama_dekan" class="form-label">Nama Kaprodi</label>
+                        <label for="kaprodi" class="form-label">Nama Kaprodi</label>
                         <input type="text" class="form-control" name="kaprodi">
                       </div>
                       <div class="mb-3">
-                        <label for="nama_wadek" class="form-label">Nama Sekretaris</label>
+                        <label for="sekretaris" class="form-label">Nama Sekretaris</label>
                         <input type="text" class="form-control" name="sekretaris">
                       </div>
                       <div class="mb-3">
-                        <label for="nama_wadek" class="form-label">Fakultas</label>
+                        <label for="fakultas_id" class="form-label">Fakultas</label>
                         <select name="fakultas_id" class="form-control">
                           @foreach ($fakultas as $item)
                             <option value="{{ $item->id }}"> {{ $item->nama }} </option>
