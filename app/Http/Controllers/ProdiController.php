@@ -31,7 +31,21 @@ class ProdiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // validasi input form
+        $input = $request->validate([
+            'nama' => 'required|unique:prodi',
+            'singkatan' => 'required',
+            'kaprodi' => 'required',
+            'sekretaris' => 'required',
+            'fakultas_id' => 'required'
+        ]);
+
+        // simpan ke tabel fakultas
+        Prodi::create($input);
+
+        // redirect ke route fakultas.index
+        return redirect()->route('prodi.index')
+                         ->with('success', 'Program studi berhasil disimpan');
     }
 
     /**

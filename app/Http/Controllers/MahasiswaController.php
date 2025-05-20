@@ -45,7 +45,11 @@ class MahasiswaController extends Controller
         if ($request->hasFile('foto')) {
             $file = $request->file('foto');
             $filename = time() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('images'), $filename);
+            // cara ke-1 upload ke dalam folder public
+            // $file->move(public_path('images'), $filename);
+            // cara ke-2 upload ke dalam folder storage
+            $file->storeAs('images', $filename);
+
             $input['foto'] = $filename;
         }
         Mahasiswa::create($input);
