@@ -61,7 +61,8 @@ class ProdiController extends Controller
      */
     public function edit(Prodi $prodi)
     {
-        //
+        $fakultas = Fakultas::all();
+        return view('prodi.edit', compact('prodi', 'fakultas'));
     }
 
     /**
@@ -69,7 +70,21 @@ class ProdiController extends Controller
      */
     public function update(Request $request, Prodi $prodi)
     {
-        //
+        // validasi input form
+        $input = $request->validate([
+            'nama' => 'required',
+            'singkatan' => 'required',
+            'kaprodi' => 'required',
+            'sekretaris' => 'required',
+            'fakultas_id' => 'required'
+        ]);
+
+        // simpan ke tabel fakultas
+        $prodi->update($input);
+
+        // redirect ke route fakultas.index
+        return redirect()->route('prodi.index')
+                         ->with('success', 'Program studi berhasil diubah');
     }
 
     /**

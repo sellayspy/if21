@@ -51,7 +51,8 @@
                             <td>{{ $item->prodi->nama }}</td>
                             <td>{{ $item->prodi->fakultas->nama }}</td>
                             <td>
-                                <form method="POST" action="{{ route('mahasiswa.destroy', $item->id) }}">
+                                <a href="{{ route('mahasiswa.edit', $item->id) }}" class="btn btn-sm btn-warning"><i class="bi bi-pencil-fill"></i></a>
+                                <form method="POST" action="{{ route('mahasiswa.destroy', $item->id) }}" class="d-inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger btn-rounded show_confirm"

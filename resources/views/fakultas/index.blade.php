@@ -49,8 +49,8 @@
                             <td>{{ $item->nama_dekan }}</td>
                             <td>{{ $item->nama_wadek }}</td>
                             <td>
-                                <a href="{{ route('fakultas.edit', $item->id) }}" class="btn btn-sm btn-warning"> <i class="bi bi-pencil-fill"></i> </a>
-                                <form method="POST" action="{{ route('fakultas.destroy', $item->id) }}">
+                                <a href="{{ route('fakultas.edit', $item->id) }}" class="btn btn-sm btn-warning"><i class="bi bi-pencil-fill"></i></a>
+                                <form method="POST" action="{{ route('fakultas.destroy', $item->id) }}" class="d-inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger btn-rounded show_confirm"

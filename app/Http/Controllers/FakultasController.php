@@ -68,9 +68,24 @@ class FakultasController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Fakultas $fakultas)
+    public function update(Request $request, $fakultas)
     {
-        //
+        $fakultas = Fakultas::findOrFail($fakultas);
+        // dd($fakultas);
+        // validasi input form
+        $input = $request->validate([
+            'nama' => 'required',
+            'singkatan' => 'required',
+            'nama_dekan' => 'required',
+            'nama_wadek' => 'required'
+        ]);
+
+        // ubah data fakultas
+        $fakultas->update($input);
+
+        // redirect ke route fakultas.index
+        return redirect()->route('fakultas.index')
+                         ->with('success', 'Fakultas berhasil diubah');
     }
 
     /**
