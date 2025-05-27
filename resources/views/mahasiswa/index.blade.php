@@ -30,7 +30,7 @@
             </div>
             </div>
             <div class="card-body">
-                <a href="{{ route('mahasiswa.create') }}" class="btn btn-primary">Tambah</a>
+                <a href="{{ route('mahasiswa.create') }}" class="btn btn-sm btn-primary"><i class="bi bi-file-earmark-plus-fill"></i> Tambah</a>
                 <table class="table">
                     <thead>
                         <tr>
@@ -39,6 +39,7 @@
                             <th>Nama</th>
                             <th>Program Studi</th>
                             <th>Fakultas</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -49,6 +50,15 @@
                             <td>{{ $item->nama }}</td>
                             <td>{{ $item->prodi->nama }}</td>
                             <td>{{ $item->prodi->fakultas->nama }}</td>
+                            <td>
+                                <form method="POST" action="{{ route('mahasiswa.destroy', $item->id) }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger btn-rounded show_confirm"
+                                    data-toggle="tooltip" title='Delete'
+                                    data-nama='{{ $item->nama }}'><i class="bi bi-trash"></i></button>
+                                </form>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>

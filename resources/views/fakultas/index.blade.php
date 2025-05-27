@@ -30,7 +30,7 @@
             </div>
             </div>
             <div class="card-body">
-                <a href="{{ route('fakultas.create') }}" class="btn btn-primary">Tambah</a>
+                <a href="{{ route('fakultas.create') }}" class="btn btn-sm btn-primary"><i class="bi bi-file-earmark-plus-fill"></i> Tambah</a>
                 <table class="table">
                     <thead>
                         <tr>
@@ -38,6 +38,7 @@
                             <th>Singkatan</th>
                             <th>Dekan</th>
                             <th>Wakil Dekan</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -47,6 +48,15 @@
                             <td>{{ $item->singkatan }}</td>
                             <td>{{ $item->nama_dekan }}</td>
                             <td>{{ $item->nama_wadek }}</td>
+                            <td>
+                                <form method="POST" action="{{ route('fakultas.destroy', $item->id) }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger btn-rounded show_confirm"
+                                    data-toggle="tooltip" title='Delete'
+                                    data-nama='{{ $item->nama }}'><i class="bi bi-trash"></i></button>
+                                </form>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
