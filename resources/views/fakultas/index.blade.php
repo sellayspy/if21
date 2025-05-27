@@ -49,6 +49,7 @@
                             <td>{{ $item->nama_dekan }}</td>
                             <td>{{ $item->nama_wadek }}</td>
                             <td>
+                                <a href="{{ route('fakultas.edit', $item->id) }}" class="btn btn-sm btn-warning"> <i class="bi bi-pencil-fill"></i> </a>
                                 <form method="POST" action="{{ route('fakultas.destroy', $item->id) }}">
                                 @csrf
                                 @method('DELETE')
