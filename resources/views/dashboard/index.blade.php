@@ -10,17 +10,25 @@
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
-<figure class="highcharts-figure">
-    <div id="container"></div>
-    <p class="highcharts-description">
-        A basic column chart comparing estimated corn and wheat production
-        in some countries.
-
-        The chart is making use of the axis crosshair feature, to highlight
-        the hovered country.
-    </p>
-</figure>
-
+<div class="row">
+    <div class="col-lg-6">
+        <figure class="highcharts-figure">
+            <div id="container"></div>
+        </figure>
+    </div>
+    <div class="col-lg-6">
+        <figure class="highcharts-figure">
+            <div id="container-asalsma"></div>
+        </figure>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6">
+        <figure class="highcharts-figure">
+            <div id="container-pertahun"></div>
+        </figure>
+    </div>
+</div>
 
 <!-- css -->
  <style>
@@ -78,7 +86,7 @@
  </style>
 
 <!-- javascript -->
- <script>
+<script>
 Highcharts.chart('container', {
     chart: {
         type: 'column'
@@ -91,7 +99,11 @@ Highcharts.chart('container', {
             'Source: Universitas MDP'
     },
     xAxis: {
-        categories: ['Informatika', 'Sistem Informasi'],
+        categories: [
+            @foreach ($mahasiswaprodi as $item)
+                ' {{ $item->nama }} ',
+            @endforeach
+        ],
         crosshair: true,
         accessibility: {
             description: 'Program Studi'
@@ -115,11 +127,113 @@ Highcharts.chart('container', {
     series: [
         {
             name: 'Mahasiswa',
-            data: [400, 600]
+            data: [
+                @foreach ($mahasiswaprodi as $item)
+                {{ $item->jumlah }},
+                @endforeach
+            ]
         }
     ]
 });
 
- </script>
+Highcharts.chart('container-asalsma', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Jumlah Mahasiswa Berdasarkan Asal SMA'
+    },
+    subtitle: {
+        text:
+            'Source: Universitas MDP'
+    },
+    xAxis: {
+        categories: [
+            @foreach ($mahasiswaasalsma as $item)
+                ' {{ $item->asal_sma }} ',
+            @endforeach
+        ],
+        crosshair: true,
+        accessibility: {
+            description: 'Program Studi'
+        }
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Mahasiswa'
+        }
+    },
+    tooltip: {
+        valueSuffix: ' (Orang)'
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [
+        {
+            name: 'Mahasiswa',
+            data: [
+                @foreach ($mahasiswaasalsma as $item)
+                {{ $item->jumlah }},
+                @endforeach
+            ]
+        }
+    ]
+});
+
+Highcharts.chart('container-pertahun', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Jumlah Mahasiswa Berdasarkan per Tahun Masuk'
+    },
+    subtitle: {
+        text:
+            'Source: Universitas MDP'
+    },
+    xAxis: {
+        categories: [
+            @foreach ($mahasiswapertahun as $item)
+                ' 20{{ $item->tahun }} ',
+            @endforeach
+        ],
+        crosshair: true,
+        accessibility: {
+            description: 'Tahun Masuk'
+        }
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Mahasiswa'
+        }
+    },
+    tooltip: {
+        valueSuffix: ' (Orang)'
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [
+        {
+            name: 'Mahasiswa',
+            data: [
+                @foreach ($mahasiswapertahun as $item)
+                {{ $item->jumlah }},
+                @endforeach
+            ]
+        }
+    ]
+});
+
+</script>
 
 @endsection
