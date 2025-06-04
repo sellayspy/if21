@@ -28,6 +28,11 @@
             <div id="container-pertahun"></div>
         </figure>
     </div>
+    <div class="col-lg-6">
+        <figure class="highcharts-figure">
+            <div id="container-kelas-pertahun"></div>
+        </figure>
+    </div>
 </div>
 
 <!-- css -->
@@ -233,6 +238,57 @@ Highcharts.chart('container-pertahun', {
         }
     ]
 });
+
+Highcharts.chart('container-kelas-pertahun', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Jumlah Kelas yang Dibuka per Prodi per Tahun Akademik'
+    },
+    subtitle: {
+        text: 'Source: Universitas MDP'
+    },
+    xAxis: {
+        categories: [
+            @foreach ($tahunList as $item)
+                ' {{$item}} ',
+            @endforeach
+        ],
+        crosshair: true,
+        accessibility: {
+            description: 'Tahun Akademik'
+        }
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Jumlah Kelas'
+        }
+    },
+    tooltip: {
+        valueSuffix: 'Kelas'
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [
+        @foreach ($group as $prodi => $data)
+            {
+                name: '{{ $prodi }}',
+                data: [
+                    @foreach ($tahunList as $item)
+                        {{ isset($data[$item]) ? $data[$item] : 0 }},
+                    @endforeach
+                ]
+            },
+        @endforeach
+    ]
+});
+
 
 </script>
 

@@ -299,11 +299,38 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a class='nav-link' href='{{ route('user.index') }}'>
+                  <i class="nav-icon bi bi-people"></i>
+                  <p>Dosen</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a class='nav-link' href='{{ route('mahasiswa.index') }}'>
                   <i class="nav-icon bi bi-people"></i>
                   <p>Mahasiswa</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a class='nav-link' href='{{ route('sesi.index') }}'>
+                  <i class="nav-icon bi bi-clock-history"></i>
+                  <p>Sesi</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class='nav-link' href='{{ route('mata_kuliah.index') }}'>
+                  <i class="nav-icon bi bi-journal-bookmark"></i>
+                  <p>Mata Kuliah</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class='nav-link' href='{{ route('jadwal.index') }}'>
+                  <i class="nav-icon bi bi-calendar-week"></i>
+                  <p>Jadwal</p>
+                </a>
+              </li>
+
             </ul>
             <!--end::Sidebar Menu-->
           </nav>
@@ -336,7 +363,7 @@
         <div class="app-content">
           <!--begin::Container-->
           <div class="container-fluid">
-          @yield('content')  
+          @yield('content')
           </div>
         </div>
         <!--end::App Content-->
@@ -413,7 +440,7 @@
             var form = $(this).closest("form");
             var nama = $(this).data("nama");
             event.preventDefault();
-            
+
             // swal({
             Swal.fire({
                     title: `Apakah Anda yakin ingin menghapus data ${nama} ini?`,
