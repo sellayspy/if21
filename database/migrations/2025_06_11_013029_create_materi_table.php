@@ -22,7 +22,6 @@ return new class extends Migration
 
             $table->foreign('mata_kuliah_id')->references('id')->on('mata_kuliah')->onDelete('cascade');
             $table->foreign('dosen_id')->references('id')->on('users')->onDelete('cascade');
-            $table->index(['mata_kuliah_id', 'user_id', 'pertemuan'], 'materi_index');
         });
     }
 
