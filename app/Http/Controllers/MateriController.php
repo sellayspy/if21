@@ -39,7 +39,7 @@ class MateriController extends Controller
             $materi->file_materi = $filename;
         }
         $materi->save();
-        return redirect()->route('materi.index')->with('success', 'Materi created successfully.');
+        return redirect()->route('materi.index')->with('Materi berhasil ditambahkan.');
     }
 
     public function show($id)
@@ -78,7 +78,7 @@ class MateriController extends Controller
 
         $materi->save();
 
-        return redirect()->route('materi.index')->with('success', 'Materi berhasil diperbarui.');
+        return redirect()->route('materi.index')->with('Materi berhasil diperbarui.');
     }
 
 
@@ -87,6 +87,6 @@ class MateriController extends Controller
         $materi = Materi::findOrFail($id);
         $materi->delete();
 
-        return redirect()->route('materi.index')->with('success', 'Materi deleted successfully.');
+        return redirect()->route('materi.index')->with('Materi berhasil dihapus.');
     }
 }
