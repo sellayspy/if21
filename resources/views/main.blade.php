@@ -305,6 +305,12 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a class='nav-link' href='{{ route('materi.index') }}'>
+                  <i class="nav-icon bi bi-book"></i>
+                  <p>Materi</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a class='nav-link' href='{{ route('mahasiswa.index') }}'>
                   <i class="nav-icon bi bi-people"></i>
                   <p>Mahasiswa</p>
