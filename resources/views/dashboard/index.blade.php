@@ -1,4 +1,4 @@
-{{-- @extends('main')
+@extends('main')
 
 @section('title', 'Dashboard')
 
@@ -292,4 +292,4 @@ Highcharts.chart('container-kelas-pertahun', {
 
 </script>
 
-@endsection --}}
+@endsection
