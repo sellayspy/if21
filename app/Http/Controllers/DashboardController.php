@@ -28,7 +28,7 @@ class DashboardController extends Controller
 
         $kelasprodipertahun = DB::select('
             SELECT prodi.nama,jadwal.tahun_akademik, COUNT(*) as jumlah_kelas
-            from Jadwal
+            from jadwal
             JOIN mata_kuliah ON jadwal.mata_kuliah_id = mata_kuliah.id
             JOIN prodi ON mata_kuliah.prodi_id = prodi.id
             GROUP BY prodi.nama, jadwal.tahun_akademik
